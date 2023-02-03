@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Route , Routes, useLocation} from "react-router-dom"
-import { CheckOut, Confirmation, Home } from "./scenes"
+import { CheckOut, Confirmation, Home, NavBar } from "./scenes"
 import ItemDetails from "./scenes/itemDetails/ItemDetails"
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
   return (
     <div className="app">
       < BrowserRouter >
+        < NavBar />
         < ScrollToTop />
         < Routes>
           < Route path="/" element={< Home />} /> 
