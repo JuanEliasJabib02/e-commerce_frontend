@@ -14,12 +14,11 @@ import { Provider } from 'react-redux'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    < ThemeProvider theme={theme}>
-      < CssBaseline />
-      <Provider store={store}>
-        <App />
-      </Provider>
-      </ThemeProvider>
-
+    <Provider store={store}>
+      < ThemeProvider theme={theme}>
+        < CssBaseline />
+          <App />
+        </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 )

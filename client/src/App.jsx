@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { BrowserRouter, Route , Routes, useLocation} from "react-router-dom"
 import { CheckOut, Confirmation, Home, NavBar } from "./scenes"
 import ItemDetails from "./scenes/itemDetails/ItemDetails"
+import CartMenu from "./scenes/global/CartMenu"
 
 function App() {
 
@@ -18,9 +19,6 @@ function App() {
     return null
   }
 
-  
-  
-
   return (
     <div className="app">
       < BrowserRouter >
@@ -32,6 +30,7 @@ function App() {
           < Route path="/checkout" element={< CheckOut />} /> 
           < Route path="/checkout/success" element={ < Confirmation />} /> 
         </Routes>
+        < CartMenu/>
       </BrowserRouter>
     </div>
   )

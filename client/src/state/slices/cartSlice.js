@@ -1,38 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isCartOpen: false,
   cart: [],
   items: [],
-}
+};
 
-
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setItems: (state, action) => state.items = action.payload,
-    addToCart: (state, action) => state.cart = [...state.cart, action.payload.item],
-    removeFromCart: (state, action) => state.cart.filter((item) => item.id !== action.payload.id),
+    setItems: (state, action) => {
+      state.items = action.payload;
+    },
+
+    addToCart: (state, action) => {
+      state.cart = [...state.cart, action.payload.item];
+    },
+
+    removeFromCart: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+    },
+
     increaseCount: (state, action) => {
       state.cart = state.cart.map((item) => {
         if (item.id === action.payload.id) {
-          item.count++
+          item.count++;
         }
-      })
-      return item;
+        return item;
+      });
     },
+
     decreaseCount: (state, action) => {
       state.cart = state.cart.map((item) => {
         if (item.id === action.payload.id && item.count > 1) {
-          item.count--
+          item.count--;
         }
-      })
-      return item;
+        return item;
+      });
     },
-    setIsOpenCart: (state) => state.isCartOpen = !state.isCartOpen
-  }
-})
+
+    setIsCartOpen: (state) => {
+      state.isCartOpen = !state.isCartOpen;
+    },
+  },
+});
 
 export const {
   setItems,
@@ -40,7 +52,7 @@ export const {
   removeFromCart,
   increaseCount,
   decreaseCount,
-  setIsOpenCart
-} = cartSlice.actions
+  setIsCartOpen,
+} = cartSlice.actions;
 
-export default cartSlice.reducer
+export default cartSlice.reducer;

@@ -10,6 +10,7 @@ import {
 } from "@mui/icons-material"
 import { shades} from "../../theme"
 import { useNavigate } from 'react-router-dom'
+import { setIsCartOpen } from '../../state/slices/cartSlice'
 const NavBar = () => {
   
   const navigate = useNavigate()
