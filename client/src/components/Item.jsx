@@ -19,7 +19,23 @@ const Item = ({ item, width }) => {
   const { category, price, name, image } = item?.attributes;
 
 
-  const url  = image.data?.attributes.formats.medium.url
+  let categoryToShow;
+
+  if (category === "bestSellers") {
+
+     categoryToShow = "Best Sellers"
+    
+  } else if (category === "topRated") {
+     categoryToShow = "Top Rated"
+  } else {
+    categoryToShow = "New Arrivals"
+  }
+
+
+  const url = image.data?.attributes.formats.medium.url
+
+  
+  
 
 
   return (
@@ -74,7 +90,7 @@ const Item = ({ item, width }) => {
 
       <Box mt="3px">
         <Typography variant="su btitle2" color={neutral.dark}>
-          {category}
+          {categoryToShow}
         </Typography>
         <Typography>{name}</Typography>
         <Typography fontWeight="bold">${price}</Typography>
