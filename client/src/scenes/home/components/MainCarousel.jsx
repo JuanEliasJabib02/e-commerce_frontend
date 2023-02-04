@@ -15,7 +15,7 @@ import BannerHeroImgs from '../../../assets/hero';
 const MainCarousel = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  console.log(BannerHeroImgs)
+
   
   return (
     <Carousel

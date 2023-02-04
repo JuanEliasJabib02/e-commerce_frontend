@@ -105,3 +105,5 @@ const Item = ({ item, width }) => {
   )
 
 }
+
+export default Item

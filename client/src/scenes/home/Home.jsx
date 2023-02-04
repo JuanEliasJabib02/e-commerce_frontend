@@ -1,5 +1,6 @@
 import React from 'react'
 import MainCarousel from "./components/MainCarousel"
+import ShoppingList from './components/ShoppingList'
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
   return (
     <div className='home'>
       < MainCarousel />
+      < ShoppingList/>
     </div>
   )
 }
