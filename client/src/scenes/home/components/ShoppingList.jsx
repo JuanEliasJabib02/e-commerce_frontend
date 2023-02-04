@@ -22,7 +22,7 @@ const ShoppingList = () => {
   }
 
   useEffect(() => {
-  const URL = "http://localhost:1337/api/items"
+  const URL = "http://localhost:1337/api/items?populate=image"
 
   axios.get(URL)
     .then(res => dispatch(setItems(res.data)))
