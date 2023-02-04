@@ -27,15 +27,73 @@ const ShoppingList = () => {
   axios.get(URL)
     .then(res => dispatch(setItems(res.data)))
     .catch(err => console.log(err))
-  },[]) 
+  }, []) 
+  
 
-  console.log(items)
+  const topRatedItems = items.data?.filter(
+    (item) => item.attributes.category === "topRated"
+  )
+
+  const newArrivals = items.data?.filter(
+    (item) => item.attributes.category === "newArrivals"
+  )
+
+
+  const bestSellers = items.data?.filter(
+    (item) => item.attributes.category === "bestSellers"
+  )
 
 
 
   
   return (
-    <div>ShoppingList</div>
+    < Box
+      width="80%"
+      margin="80px auto"
+    >
+      < Typography variant="h3" textAlign="center">
+        Our Feautured <b>Products</b>
+      </Typography>
+      < Tabs
+        textColor="primary"
+        indicatorColor="primary"
+        value={value}
+        onChange={handleChange}
+        centered
+        TabIndicatorProps={{
+          sx: {
+            display: isNonMobile ? "block" : "none"
+          }
+        }}
+        sx={{
+          m :"25px",
+          "& .MuiTabs-flexContainer" : {
+            flexWrap: "wrap"
+          }   
+        }}
+      >
+        < Tab label="ALL" value="all" />
+        < Tab label="NEW ARRIVALS" value="newArrivals" />
+        < Tab label="BEST SELLERS" value="bestSellers" />
+        < Tab label="TOP RATED" value="topRated" /> 
+      </Tabs>
+
+      {/* Responsive box item list */}
+      < Box
+        margin="0 auto"
+        display="grid"
+        gridTemplateColumns="repeat(auto-fill,300px)"
+        justifyContent="space-around"
+        rowGap="20px"
+      >
+        {value === "all" && items.data?.map((item) => (
+          < Item
+            item={item}
+            key={`${item.name} - ${item.id}`}
+          />
+        ))}
+      </Box>
+    </Box>
   )
 }
 

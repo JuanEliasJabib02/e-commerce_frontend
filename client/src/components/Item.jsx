@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 const Item = ({ item, width }) => {
 
+  console.log(item)
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [count, setCount] = useState(1)
@@ -18,11 +20,11 @@ const Item = ({ item, width }) => {
   const {palette:{neutral}} = useTheme()
 
 
-  const { category, price, name, image } = item.atributtes
+  const { category, price, name, image } = item.attributes
   
   const {
     data: {
-      atributtes: {
+      attributes: {
         formats: {
           medium: { url },
         }
