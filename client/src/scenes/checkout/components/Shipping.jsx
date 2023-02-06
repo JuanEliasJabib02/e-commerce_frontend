@@ -1,39 +1,38 @@
-import React from 'react'
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material"
-import AddressForm from './AddressForm'
+import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import AddressForm from "./AddressForm";
+AddressForm
 
 const Shipping = ({
   values,
-  errors,
   touched,
-  handleBlur,
+  errors,
   handleChange,
-  setFieldValue
+  handleBlur,
+  setFieldValue,
 }) => {
   return (
-    < Box m="30px auto">
-      {/* Billing form */}
-      < Box>
-        < Typography sx={{mb:"15px", fontSize: "18px"} }>
+    <Box m="30px auto">
+      {/* BILLING FORM */}
+      <Box>
+        <Typography sx={{ mb: "15px" }} fontSize="18px">
           Billing Information
         </Typography>
-
-        < AddressForm
+        <AddressForm
           type="billingAddress"
           values={values.billingAddress}
-          errors={errors}
           touched={touched}
+          errors={errors}
           handleBlur={handleBlur}
-          handleChange={handleChange}  
+          handleChange={handleChange}
         />
       </Box>
+
       <Box mb="20px">
         <FormControlLabel
-          label="Same for shipping address"
           control={
-            < Checkbox
+            <Checkbox
               defaultChecked
-              values={values.shippingAddress.isSameAddress}
+              value={values.shippingAddress.isSameAddress}
               onChange={() =>
                 setFieldValue(
                   "shippingAddress.isSameAddress",
@@ -42,29 +41,28 @@ const Shipping = ({
               }
             />
           }
+          label="Same for Shipping Address"
         />
       </Box>
 
-      {/* shipping form */}
-
+      {/* SHIPPING FORM */}
       {!values.shippingAddress.isSameAddress && (
         <Box>
-          < Typography sx={{mb:"15px"}}>
-            Shipping information
+          <Typography sx={{ mb: "15px" }} fontSize="18px">
+            Shipping Information
           </Typography>
-          < AddressForm
+          <AddressForm
             type="shippingAddress"
             values={values.shippingAddress}
-            errors={errors}
             touched={touched}
+            errors={errors}
             handleBlur={handleBlur}
             handleChange={handleChange}
-             
           />
         </Box>
       )}
     </Box>
-  )
-}
+  );
+};
 
-export default Shipping
+export default Shipping;
