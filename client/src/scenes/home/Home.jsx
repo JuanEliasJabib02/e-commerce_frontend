@@ -1,6 +1,8 @@
 import React from 'react'
 import MainCarousel from "./components/MainCarousel"
 import ShoppingList from './components/ShoppingList'
+import Subscribe from './components/Subscribe'
+
 
 
 const Home = () => {
@@ -8,7 +10,8 @@ const Home = () => {
   return (
     <div className='home'>
       < MainCarousel />
-      < ShoppingList/>
+      < ShoppingList />
+      < Subscribe/>
     </div>
   )
 }
