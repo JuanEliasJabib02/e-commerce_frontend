@@ -28,7 +28,7 @@ const ItemDetails = () => {
   useEffect(() => {
     const URL = `http://localhost:1337/api/items/${itemId}?populate=image`
     axios.get(URL)
-      .then(res => setItem(res.data.data.attributes))
+      .then(res => setItem(res.data.data))
       .catch(err => console.log(err))
   }, [itemId])
   
@@ -40,7 +40,7 @@ const ItemDetails = () => {
     }, [itemId])
 
   
-  const itemUrlImage = item?.image?.data?.attributes?.formats?.medium?.url
+  const itemUrlImage = item?.attributes?.image?.data?.attributes?.formats?.medium?.url
 
   
   
@@ -87,13 +87,13 @@ const ItemDetails = () => {
           < Box
             m="65px 0 25px 0"
           >
-            < Typography variant="h3">{item?.name}</Typography>
-            < Typography>{item?.price}</Typography>
+            < Typography variant="h3">{item?.attributes?.name}</Typography>
+            < Typography>{item?.attributes?.price}</Typography>
             < Typography
               sx={{
                 mt:"20px"
               }}
-            >{ item?.longDescription}</Typography>
+            >{ item?.attributes?.longDescription}</Typography>
           </Box>
 
           {/*  Count and button */}
@@ -140,7 +140,7 @@ const ItemDetails = () => {
               > Add to Wish List
               </Typography>
             </Box>
-            < Typography>CATEGORIES:{item?.category}</Typography>
+            < Typography>CATEGORIES:{item?.attributes?.category}</Typography>
           </Box>
         </Box>
       </Box>
@@ -154,7 +154,7 @@ const ItemDetails = () => {
         </Tabs>
         < Box display="flex" flexWrap="wrap" gap="15px">
           {value === "description" && (
-            <div>{item?.longDescription}</div>
+            <div>{item?.attributes?.longDescription}</div>
           )}
            {value === "reviews" && (
             <div>Reviews</div>
