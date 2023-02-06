@@ -16,6 +16,7 @@ const Item = ({ item, width }) => {
     palette: { neutral },
   } = useTheme();
 
+
   const { category, price, name, image } = item?.attributes;
 
 
