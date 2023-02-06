@@ -5,6 +5,8 @@ import { Formik } from "formik"
 import *  as yup from "yup"
 import { shades } from '../../theme'
 import Shipping from './components/Shipping'
+import Payment from './components/Payment'
+
 
 
 const initialValues = {
@@ -85,6 +87,7 @@ const checkoutSchema = [
 
 ]
 
+
 const CheckOut = () => {
   const [activeStep, setActiveStep] = useState(0);
   const cart = useSelector((state) => state.cart.cart)
@@ -92,8 +95,21 @@ const CheckOut = () => {
   const isFirstStep = activeStep === 0
   const isSecondStep = activeStep === 1
 
-  const handleFormSubmit = async (value, actions) => {
+  const handleFormSubmit = async (values, actions) => {
     setActiveStep(activeStep + 1)
+
+    if (isFirstStep && values.shippingAddress.isSameAddress) {
+      actions.setFieldValues("shippingAddress", {
+        ...values.billingAddress,
+        isSameAddress:true
+      })
+    }
+
+    if (isSecondStep) {
+      makePayment(values)
+
+    }
+    actions.setTouched({});
   }
 
   const makePayment = async (values) => {
@@ -135,7 +151,55 @@ const CheckOut = () => {
                 handleChange={handleChange}
                 setFieldValue={setFieldValue}
               />
-            )}
+              )}
+            {isSecondStep && (
+              <Payment
+                values={values}
+                errors={errors}
+                touched={touched}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                setFieldValue={setFieldValue}
+              />
+              )}              
+              < Box
+                display="flex"
+                justifyContent="space-between"
+                gap="50px"
+
+              >
+                {isSecondStep && (
+                  < Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: shades.primary[200],
+                      boxShadow: "none",
+                      color: "white",
+                      borderRadius: 0,
+                      padding:"15px 40px"
+                    }}
+                    onClick={() =>  setActiveStep(activeStep -1)}
+                  >Back
+                  </Button>
+                )}
+                  < Button
+                    fullWidth
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                    sx={{
+                      backgroundColor: shades.primary[400],
+                      boxShadow: "none",
+                      color: "white",
+                      borderRadius: 0,
+                      padding:"15px 40px"
+                    }}
+                    onClick={() =>  setActiveStep(activeStep -1)}
+                  >{ isFirstStep ? "Next" : "Place Order"}
+                  </Button>                
+              </Box>
           </form>
         )}
       </Formik>
